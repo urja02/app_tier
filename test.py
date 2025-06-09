@@ -1,6 +1,5 @@
 import os
 import boto3
-from face_recognition import face_match
 from dotenv import load_dotenv
 import os
 import time 

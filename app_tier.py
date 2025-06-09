@@ -1,5 +1,5 @@
 import boto3
-from face_recognition import face_match
+from model.face_recognition import face_match
 from dotenv import load_dotenv
 import os
 import time 
@@ -48,7 +48,7 @@ def run():
     if os.path.exists(img_path):
         print("image found ", img_path)
         try:
-            result = face_match(img_path, 'data.pt')
+            result = face_match(img_path)
             print("The result is ", result[0])
         except Exception as e:
             print("Error in face matching", e)
