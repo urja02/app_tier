@@ -9,15 +9,20 @@ load_dotenv()
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_REGION = os.getenv('AWS_DEFAULT_REGION', 'us-east-1')  # Default to us-east-1 if not specified
 
 client = boto3.client(
     'sqs',
     aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-   
+    region_name=AWS_REGION
 )
-s3_client = boto3.client('s3',aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,)
+s3_client = boto3.client(
+    's3',
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_REGION
+)
 
 # 1. Implement the polling logic to get the image name from the queue. Polling logic should continuously check if 
 # if there is a message in the queue, and if not, sleep for 5 seconds and check again.
